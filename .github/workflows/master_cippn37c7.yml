@@ -17,7 +17,13 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: 'Checkout GitHub Action'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: 'Build and stage modules'
+        shell: pwsh
+        run: ./Tools/Build-DevApiModules.ps1
 
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
